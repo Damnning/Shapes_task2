@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Shapes_task2.ViewModels"
+        x:Class="Shapes_task2.Views.ShapesView"
+        Title="Фигуры"
+        Width="400" Height="400"
+        x:DataType="vm:MainViewModel"
+        x:CompileBindings="True">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+            <Button Content="Добавить круг" Command="{Binding AddCircleCommand}" Margin="5"/>
+            <Button Content="Добавить прямоугольник" Command="{Binding AddRectangleCommand}" Margin="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+            <StackPanel>
+                <TextBlock>X</TextBlock>
+                <TextBox Text="{Binding X}" Watermark="X" Margin="5"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Y</TextBlock>
+                <TextBox Text="{Binding Y}" Watermark="Y" Margin="5"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Radius</TextBlock>
+                <TextBox Text="{Binding Radius}" Watermark="Radius" Margin="5"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Width</TextBlock>
+                <TextBox Text="{Binding Width}" Watermark="Width" Margin="5"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Height</TextBlock>
+                <TextBox Text="{Binding Height}" Watermark="Height" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Shapes}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" />
+                        <TextBlock>: </TextBlock>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock>, Position: </TextBlock>
+                        <TextBlock Text="{Binding Position}" />
+                        <TextBlock>, Area: </TextBlock>
+                        <TextBlock Text="{Binding Area}" />
+                         <!-- <TextBlock Text="{Binding Path=Intersections}" />Здесь нужно будет реализовать отображение пересекающихся фигур -->
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
+    
+</Window>
